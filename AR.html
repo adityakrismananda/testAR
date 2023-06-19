@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Augmented Reality Example</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="aframe-ar.js"></script>
+  <style>
+    #arScene {
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+    <a-assets>
+      <a-asset-item id="model" src="model3d_animated.fbx"></a-asset-item>
+      <img id="tracker" src="tracker.png">
+    </a-assets>
+    <a-marker preset="custom" type="pattern" url="tracker.png">
+      <a-entity position="0 0 0" scale="0.5 0.5 0.5" animation-mixer="clip: *; loop: repeat" gltf-model="#model"></a-entity>
+    </a-marker>
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
